@@ -1,1 +1,3 @@
+# npmでインストールしたnode_modulesはnpmで管理されるのでgitの監視対象外にする
 node_modules/
+
