@@ -1,0 +1,24 @@
+{
+  "name": "kteam",
+  "version": "1.0.0",
+  "description": "Kチームで使用するリポジトリです",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qikilca/KTeam.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Qikilca/KTeam/issues"
+  },
+  "homepage": "https://github.com/Qikilca/KTeam#readme",
+  "dependencies": {
+    "next": "^12.0.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
