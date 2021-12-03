@@ -1,3 +1,5 @@
 # npmでインストールしたnode_modulesはnpmで管理されるのでgitの監視対象外にする
 node_modules/
 
+# .nextはdevに実行時に使用されるものなので監視対象外へ
+.next/
