@@ -3,3 +3,7 @@ node_modules/
 
 # .nextはdevに実行時に使用されるものなので監視対象外へ
 .next/
+
+# 実行環境の状態はnpmで管理できるので監視対象外へ
+package-lock.json
+package.json
