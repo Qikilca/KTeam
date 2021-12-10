@@ -5,5 +5,5 @@ node_modules/
 .next/
 
 # 実行環境の状態はnpmで管理できるので監視対象外へ
-package-lock.json
-package.json
+/package-lock.json
+/package.json
