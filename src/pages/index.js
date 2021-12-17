@@ -1,7 +1,9 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import {Button, TextField} from '@mui/material';
+import Test from '../componets/Test';
 import Footer from '../componets/Footer';
+import FooterTest from '../componets/Test';
 
 
 function HomePage() {
@@ -10,8 +12,7 @@ function HomePage() {
         
         <div>
             
-            
-
+    
             <h1>
                 Welcom to Next.js
             </h1>
@@ -20,7 +21,12 @@ function HomePage() {
                 Add Button
             </Button>
 
-            <Footer></Footer>
+            <Footer>
+
+            </Footer>
+            
+
+
         </div>
 
     )
