@@ -9,7 +9,7 @@ function PurchaseCompletedPage() {
     <div>
       <Grid container maxWidth={"xs"} justifyContent={"center"} textAlign={"center"}>
         <Grid item xs={12} md={7} margin={2}>
-        <Image src="/img/settelment.png" width={944} height={505} alt="決済画面画像" />
+          <Image src="/img/settelment.png" width={944} height={505} alt="決済画面画像" />
         </Grid>
 
         <Grid item xs={12} md={7} margin={2}>

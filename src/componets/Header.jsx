@@ -1,8 +1,8 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { Box, Toolbar, MenuItem, Menu, Typography, Button, AppBar, IconButton, FormGroup, FormControlLabel, Switch } from '@mui/material';
-import { SearchIcon, MoreVertIcon } from '@mui/icons-material';
-
+import SearchIcon from '@mui/icons-material/Search';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 function Header() {
     const [LoginAnchorEl, setLoginAnchorEl] = React.useState(null);
@@ -103,7 +103,7 @@ function Header() {
                     </Button>
                     {auth ? (
                         <div>
-                            <Button variant="Outlined" mx={1} >
+                            <Button variant='outlined' mx={1} >
                                 マイページ
                             </Button>
                             <Button variant="Outlined" mx={1}  >
