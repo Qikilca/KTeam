@@ -1,21 +1,18 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Grid, TextField } from '@mui/material';
-import Test from '../componets/Test';
+import HeaderTest from '../componets/HeaderTest';
 import Footer from '../componets/Footer';
-import FooterTest from '../componets/Test';
+import FooterTest from '../componets/HeaderTest';
 import PlanCard from '../componets/Plancard';
 import Image from 'next/image';
-import Header from '../componets/Header';
 
 function HomePage() {
 
     return (
 
         <div>
-
-            <Header></Header>
-
+            <HeaderTest></HeaderTest>
 
             <PlanCard></PlanCard>
 
