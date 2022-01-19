@@ -17,9 +17,11 @@ const pages = ['作物を探す','新規登録', 'ログイン'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Test() {
-
-    //React Hooksを使ったログイン状態の保存
-    const [auth] = React.useState(true);
+    /**
+     * React Hooksを使ったログイン状態の保存変数
+     * Trueならログイン状態、Falseならログアウト状態
+     */
+    const auth = React.useState(true);
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -117,6 +119,7 @@ function Test() {
                     </Box>
 
                     {/**アバター表示 */}
+                    {/**authがTrueならアバター類を表示しFalseなら非表示にする */}
                     {auth && (
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
