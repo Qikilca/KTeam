@@ -4,9 +4,10 @@ import { sql_query } from "../../../lib/db";
 const handler = async (_, res) => {
     try {
         const results = await sql_query(`
-        SELECT * FROM teacher_member
+        SELECT * 
+        FROM class_plan
+        ORDER BY created_at DESC
         LIMIT 5
-
         `);
 
         return res.json(results);
