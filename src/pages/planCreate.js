@@ -31,14 +31,21 @@ function planCreate() {
         setCrops(event.target.value);
 
     };
+    //開催地選択
+    const [area, setArea] = React.useState();
+    const handleChange2 = (event) => {
+        setArea(event.target.value);
+
+    };
 
     //カレンダー
     const [value, setValue] = React.useState([null, null]);
 
     //  画像アップロード
     const Input = styled('input')({
-        display: 'none'});
-        
+        display: 'none'
+    });
+
 
 
 
@@ -88,6 +95,30 @@ function planCreate() {
                     </FormControl>
                 </Grid>
                 <Grid item xs={12} md={7} margin={2} >
+                    <FormControl variant="outlined" fullWidth>
+                        <InputLabel id="area-label">開催地域選択</InputLabel>
+                        <Select
+                            variant="outlined"
+                            labelId="area-label"
+                            id="area"
+                            value={area}
+                            label="開催地域選択"
+                            displayEmpty
+                            onChange={handleChange2}
+                        >
+                            <MenuItem value={"aizu"}>会津地域</MenuItem>
+                            <MenuItem value={"south_aizu"}>南会津地域</MenuItem>
+
+                            <MenuItem value={"sousou"}>相双地域</MenuItem>
+                            <MenuItem value={"iwaki"}>いわき地域</MenuItem>
+
+                            <MenuItem value={"prefecture_north"}>県北地域</MenuItem>
+                            <MenuItem value={"prefecture_inside"}>県中地域</MenuItem>
+                            <MenuItem value={"prefecture_south"}>県南地域</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} md={7} margin={2} >
                     <TextField id="place" label="開催地詳細" variant="outlined" fullWidth />
 
                 </Grid>
@@ -98,7 +129,7 @@ function planCreate() {
                             startText="開催期間 開始日"
                             endText="終了日"
                             value={value}
-                            
+
                             onChange={(newValue) => {
                                 setValue(newValue);
 
