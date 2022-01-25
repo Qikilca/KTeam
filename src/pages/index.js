@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Grid, TextField } from '@mui/material';
+import { Button, Grid, TextField, Typography ,Box} from '@mui/material';
 import HeaderTest from '../componets/HeaderTest';
 import Footer from '../componets/Footer';
 import FooterTest from '../componets/HeaderTest';
@@ -14,7 +14,12 @@ function HomePage() {
         <div>
             <HeaderTest></HeaderTest>
 
-            <PlanCard></PlanCard>
+            <Grid container textAlign={"center"} justifyContent={"center"} spacing={2} marginTop={2}>
+                <PlanCard name="田中 太郎"></PlanCard>
+
+                <PlanCard name="山田 花子"></PlanCard>
+            </Grid>
+
 
             {
                 /*
