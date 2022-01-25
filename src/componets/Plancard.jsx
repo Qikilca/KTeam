@@ -1,15 +1,12 @@
 import { AutoFixHigh, CardTravel, MoreVert } from "@mui/icons-material";
 import * as React from 'react';
-import { Avatar, List, Card, CardContent, CardHeader, Box, Divider, Grid, IconButton, ListItem, Typography, Button, CardActions, Icon, autocompleteClasses } from "@mui/material";
+import { Avatar, List, Card, CardContent, CardHeader, Box, Divider, Grid, ListItem, Typography, Button, CardActions, Icon, autocompleteClasses, IconButton } from "@mui/material";
 import Image from "next/image";
 import { use } from "express/lib/router";
 import { textAlign } from "@mui/system";
 
-function PlanCard(params) {
-
-
-    const userName = React.useState("田中 太郎")
-    const imgName = userName.toString();
+function PlanCard(props) {
+    const userName = props.name
     const postedDate = React.useState("投稿日：" + "2021年1月1日")
 
 
@@ -20,6 +17,13 @@ function PlanCard(params) {
         <Grid item xs={12} md={8}>
 
             <Card variant="outlined">
+
+                <Typography component="div">
+                    <Box sx={{ fontSize: 28, fontWeight: 550, m: 1 }}>初心者でも出来るトマト栽培</Box>
+                </Typography>
+
+
+                <Divider />
 
                 <CardContent>
                     {/*カードコンテンツをGridのコンテナとして指定*/}
@@ -84,11 +88,14 @@ function PlanCard(params) {
 
                 <CardHeader
                     avatar={
-                        <Avatar
-                            alt={imgName}
-                            src="/broken-image.jpg"
-                        >
-                        </Avatar>
+                        <IconButton sx={{p:0}}>
+                            <Avatar
+                                alt={userName}
+                                src="/broken-image.jpg"
+                            >
+                            </Avatar>
+                        </IconButton>
+
                     }
                     title={userName}
                     subheader={postedDate}

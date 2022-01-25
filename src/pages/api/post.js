@@ -15,11 +15,3 @@ const handler = async (_, res) => {
 };
 
 export default handler;
-/*
-export default async (name) => {
-    const result = await db.query(`
-    SELECT * FROM user;
-    `)
-    return result
-}
-*/

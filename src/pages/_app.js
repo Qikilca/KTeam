@@ -1,8 +1,13 @@
 // import App from 'next/app'
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
 
-  return <Component {...pageProps} />;
+  return (
+
+    <Component {...pageProps} />
+
+  );
 }
 
 // もし、アプリケーション内のすべてのページでブロックするデータを必要とする場合のみ、このメソッドのコメントを外してください。
