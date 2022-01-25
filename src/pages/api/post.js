@@ -4,7 +4,7 @@ import { sql_query } from "../../../lib/db";
 const handler = async (_, res) => {
     try {
         const results = await sql_query(`
-        SELECT * FROM user
+        SELECT * FROM teacher_menber
         `);
 
         return res.json(results);

@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 //ボタンのラベル
 const pages = ['作物を探す','新規登録', 'ログイン'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['マイページ','ログアウト'];
 
 function Test() {
     /**
@@ -54,7 +54,7 @@ function Test() {
                         component="div"
                         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                     >
-                        LOGOAAA
+                        ふくのう
                     </Typography>
 
                     {/**画面が小さい時のメニューバー */}
@@ -102,7 +102,7 @@ function Test() {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
-                        LOGO
+                        ふくのう
                     </Typography>
 
                     {/**画面が大きい時のメニューボタン */}

@@ -4,12 +4,40 @@ import { Avatar, List, Card, CardContent, CardHeader, Box, Divider, Grid, ListIt
 import Image from "next/image";
 import { use } from "express/lib/router";
 import { textAlign } from "@mui/system";
+import moment from "moment";
+import "moment/locale/ja";
 
 function PlanCard(props) {
-    const userName = props.name
-    const postedDate = React.useState("投稿日：" + "2021年1月1日")
+    const userName = props.userName;
 
+    //momentを日本語に設定
+    moment.locale("ja");
+    //フォーマットをYYYY年M月D日 HH:mmに設定
+    const postedDate = moment(props.postedDate).format("YYYY年M月D日 HH:mm");
 
+    //プランタイトル
+    const planTitle = props.title;
+
+    //開始日と終了日
+    const startDate = props.startDate;
+    const endDate = props.endDate;
+
+    //開催期間を差分から計算
+    const holdingPeriod = moment(endDate).diff(moment(startDate), "days")
+
+    //開催地域
+    const areaName = props.areaName;
+
+    //作物
+    const cropsName = props.cropsName;
+
+    //定員
+    const capacity = props.capacity;
+
+    //プラン概要
+    const description = props.description;
+
+    const fee = props.fee;
 
     return (
 
@@ -19,7 +47,7 @@ function PlanCard(props) {
             <Card variant="outlined">
 
                 <Typography component="div">
-                    <Box sx={{ fontSize: 28, fontWeight: 550, m: 1 }}>初心者でも出来るトマト栽培</Box>
+                    <Box sx={{ fontSize: 28, fontWeight: 550, m: 1 }}>{planTitle}</Box>
                 </Typography>
 
 
@@ -42,25 +70,34 @@ function PlanCard(props) {
 
                                 {/*説明項目のリスト化*/}
                                 <List style={{ width: "100%", whiteSpace: 'nowrap' }}>
+
+
                                     <ListItem>
-                                        開催期間:2020/01/01
+                                        開始日:{moment(startDate).format("YYYY年M月D日")}
                                     </ListItem>
 
                                     <Divider />
 
                                     <ListItem>
-                                        開催地域:会津地域
+                                        開催期間:{holdingPeriod + "日間"}
+                                    </ListItem>
+
+
+                                    <Divider />
+
+                                    <ListItem>
+                                        開催地域:{areaName}
                                     </ListItem>
 
                                     <Divider />
 
                                     <ListItem>
-                                        対象作物:トマト
+                                        対象作物:{cropsName}
                                     </ListItem>
                                     <Divider />
 
                                     <ListItem>
-                                        定員:3名
+                                        定員:{capacity + "名"}
                                     </ListItem>
                                     <Divider />
 
@@ -71,7 +108,7 @@ function PlanCard(props) {
                                                 textOverflow: 'ellipsis',
                                                 overflow: 'hidden',
                                             }}>
-                                            説明:こちらのプランでは初心者でも習得可能なトマトの栽培方法をお教えしています。
+                                            説明:{description}こちらのプランでは初心者でも習得可能なトマトの栽培方法をお教えしています。
 
                                         </Box>
 
@@ -88,7 +125,7 @@ function PlanCard(props) {
 
                 <CardHeader
                     avatar={
-                        <IconButton sx={{p:0}}>
+                        <IconButton sx={{ p: 0 }}>
                             <Avatar
                                 alt={userName}
                                 src="/broken-image.jpg"
@@ -98,7 +135,7 @@ function PlanCard(props) {
 
                     }
                     title={userName}
-                    subheader={postedDate}
+                    subheader={"投稿日 " + postedDate}
                     inlist
                     action={
                         <Box sx={{
@@ -109,7 +146,7 @@ function PlanCard(props) {
                                  */}
                             <Button variant="contained" disableElevation>
                                 <div>
-                                    ￥4000
+                                    ￥{fee}
                                 </div>
                             </Button>
                         </Box>
