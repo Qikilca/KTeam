@@ -15,10 +15,6 @@ const handler = async (req, res) => {
 
         const json = { "teacher_name": name}
 
-
-        //名前を結合して返す
-        var teacherName = { "teacher_name": results.map(item => item.last_name + " " + item.first_name) }
-
         return res.json(json)
     } catch (e) {
         res.status(500).json({ message: e.message });
