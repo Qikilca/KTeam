@@ -1,27 +1,28 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 
-//ボタンのラベル
-const pages = ['作物を探す','新規登録', 'ログイン'];
-const settings = ['マイページ','ログアウト'];
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem } from "@mui/material";
+import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
+
+//ボタンのラベルと遷移先の2次元配列
+const pages = [
+    ["トップページ", "/"],
+    ["作物を探す", ""],
+    ["新規登録", "/registerPage"]
+];
+
+const settings = ["マイページ", "ログアウト"]
 
 function Test() {
+
+    const { data: session } = useSession();
+
     /**
      * React Hooksを使ったログイン状態の保存変数
      * Trueならログイン状態、Falseならログアウト状態
      */
-    const auth = React.useState(true);
+    const auth = false;
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -42,20 +43,24 @@ function Test() {
     };
 
 
+
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
 
                     {/**画面が大きい時のロゴ */}
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-                    >
-                        ふくのう
-                    </Typography>
+                    <Link href={"/"}>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="div"
+                            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+                        >
+                            ふくのう
+                        </Typography>
+                    </Link>
+
 
                     {/**画面が小さい時のメニューバー */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -88,10 +93,41 @@ function Test() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                <MenuItem key={page[0]} onClick={handleCloseNavMenu}>
+                                    <Link href={page[1]}>
+
+                                        <Typography textAlign="center">
+                                            {page[0]}
+                                        </Typography>
+                                    </Link>
+
                                 </MenuItem>
+
                             ))}
+
+                            {!session && (
+                                <>
+                                    <MenuItem key={"ログイン"} onClick={handleCloseNavMenu}>
+                                        <Link href={"/loginPage"}>
+                                            <Typography textAlign="center">
+                                                ログイン
+                                            </Typography>
+                                        </Link>
+
+                                    </MenuItem>
+
+                                    <MenuItem key={"next-auth"} onClick={handleCloseNavMenu}>
+                                        <Link href={"/api/auth/signin/google/"}>
+                                            <Typography textAlign="center">
+                                                next-auth
+                                            </Typography>
+                                        </Link>
+
+                                    </MenuItem>
+
+
+                                </>
+                            )}
                         </Menu>
                     </Box>
 
@@ -108,19 +144,53 @@ function Test() {
                     {/**画面が大きい時のメニューボタン */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
+                            //リンクで囲って画面遷移を実装にする
+                            <Link href={page[1]}>
+                                <Button
+                                    key={page[0]}
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    {page[0]}
+                                </Button>
+                            </Link>
+
                         ))}
+
+
+
+                        {!session && (
+                            <>
+                                <Link href={"/loginPage"}>
+                                    <Button
+                                        key={"ログイン"}
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        ログイン
+                                    </Button>
+                                </Link>
+
+
+
+                                <Link href={"/api/auth/signin/google/"}>
+                                    <Button
+                                        key={"next-auth"}
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        next-auth
+                                    </Button>
+                                </Link>
+
+                            </>
+                        )}
+
                     </Box>
 
                     {/**アバター表示 */}
                     {/**authがTrueならアバター類を表示しFalseなら非表示にする */}
-                    {auth && (
+                    {session && (
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -142,12 +212,28 @@ function Test() {
                                 }}
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
+
+
+
                             >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
-                                    </MenuItem>
-                                ))}
+
+                                <MenuItem key={"マイページ"} onClick={handleCloseNavMenu}>
+
+                                    <Link href={"/"}>
+                                        <Typography textAlign="center">
+                                            マイページ
+                                        </Typography>
+                                    </Link>
+                                </MenuItem>
+
+                                <MenuItem onClick={() => signOut()}>
+
+                                    <Typography textAlign="center">
+                                        ログアウト
+                                    </Typography>
+
+                                </MenuItem>
+
                             </Menu>
                         </Box>
 
@@ -158,7 +244,7 @@ function Test() {
 
             </Container>
 
-        </AppBar>
+        </AppBar >
     );
 };
 export default Test;
