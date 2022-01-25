@@ -1,13 +1,15 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Grid, TextField, Typography ,Box} from '@mui/material';
+import { Button, Grid, TextField, Typography, Box } from '@mui/material';
 import HeaderTest from '../componets/HeaderTest';
 import Footer from '../componets/Footer';
 import FooterTest from '../componets/HeaderTest';
 import PlanCard from '../componets/Plancard';
 import Image from 'next/image';
 
-function HomePage() {
+function HomePage(props) {
+    //propsをpostsに代入
+    const { posts } = props;
 
     return (
 
@@ -15,35 +17,29 @@ function HomePage() {
             <HeaderTest></HeaderTest>
 
             <Grid container textAlign={"center"} justifyContent={"center"} spacing={2} marginTop={2}>
-                <PlanCard name="田中 太郎"></PlanCard>
 
-                <PlanCard name="山田 花子"></PlanCard>
-            </Grid>
+                {
+                    //propsに入っている物を全て出してプランカードを作成する
+                    posts.map(
+                        (item) =>
+                            <PlanCard
+                            userName={item.teacher_name} 
+                            postedDate={item.created_at}
+                            title={item.title}
+                            startDate={item.start_date}
+                            endDate={item.end_date}
+                            areaName={item.area_name}
+                            cropsName={item.crops_name}
+                            capacity={item.capacity}
+                            description={item.description}
+                            fee={item.fee}
 
+                            ></PlanCard>
+                    )
 
-            {
-                /*
-            <Grid container justifyContent={"center"}>
-                <Grid item xs={12} md={7}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={6}>
-
-                            <TextField id="input-name" label="姓" variant="outlined" fullWidth></TextField>
-
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField id="input-name" label="名" variant="outlined" fullWidth></TextField>
-
-                        </Grid>
-
-                    </Grid>
-
-                </Grid>
+                }
 
             </Grid>
-             */
-            }
-
 
         </div>
 
@@ -51,5 +47,17 @@ function HomePage() {
 
 
 }
+
+//PlanCardに使うPropsを取得してくる関数
+export async function getStaticProps(context) {
+    //エンドポイント指定
+    const res = await fetch("http://localhost:3000/api/getNewPlan5");
+    const posts = await res.json();
+
+    return {
+        props: { posts }
+    };
+}
+
 
 export default HomePage;
