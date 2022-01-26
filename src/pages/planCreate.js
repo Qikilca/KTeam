@@ -118,10 +118,11 @@ function planCreate() {
                         </Select>
                     </FormControl>
                 </Grid>
+
                 <Grid item xs={12} md={7} margin={2} >
                     <TextField id="place" label="開催地詳細" variant="outlined" fullWidth />
-
                 </Grid>
+                
                 <Grid item xs={12} md={7} margin={2}  >
                     <LocalizationProvider dateAdapter={AdapterDateFns} locale={ja}>
 
@@ -129,6 +130,8 @@ function planCreate() {
                             startText="開催期間 開始日"
                             endText="終了日"
                             value={value}
+                            okText="決定"
+                            cancelText="キャンセル"
 
                             onChange={(newValue) => {
                                 setValue(newValue);
