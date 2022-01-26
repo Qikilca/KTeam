@@ -10,4 +10,6 @@ node_modules/
 
 # テストファイルは各個人用の試験用ファイルにするため監視対象外へ
 /src/pages/test.js
-src/pages/planCreate.js
+
+# 環境変数のローカル
+.env.local

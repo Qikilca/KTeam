@@ -1,11 +1,14 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import HeaderTest from '../componets/HeaderTest';
 
 import { Button, TextField, Grid } from '@mui/material';
 
 function RegisterPage() {
   return (
     <div>
+      <HeaderTest></HeaderTest>
+
       <Grid container maxWidth={"xs"} justifyContent={"center"}>
 
         <Grid item xs={12} md={7} margin={3}>
