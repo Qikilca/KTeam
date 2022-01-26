@@ -219,7 +219,7 @@ function Test() {
 
                                 <MenuItem key={"マイページ"} onClick={handleCloseNavMenu}>
 
-                                    <Link href={"/"}>
+                                    <Link href={"/studentMyPage"}>
                                         <Typography textAlign="center">
                                             マイページ
                                         </Typography>
