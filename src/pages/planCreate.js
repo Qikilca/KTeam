@@ -37,8 +37,9 @@ function planCreate() {
 
     //  画像アップロード
     const Input = styled('input')({
-        display: 'none'});
-        
+        display: 'none'
+    });
+
 
 
 
@@ -98,7 +99,7 @@ function planCreate() {
                             startText="開催期間 開始日"
                             endText="終了日"
                             value={value}
-                            
+
                             onChange={(newValue) => {
                                 setValue(newValue);
 

@@ -29,11 +29,12 @@ function SearchPlan(props) {
                 <Box sx={{
                     display: "block"
                 }}>
-                    <Grid container textAlign={"center"} justifyContent={"center"} marginTop={2}
-                        sm={12}
-                        sx={12}
-                        md={12}
-                        xl={10}>
+                    <Grid container textAlign={"center"} justifyContent={"center"} 
+                        xs={6}
+                        sm={6}
+                        md={7}
+                        lg={11}
+                        xl={12}>
 
                         {
                             //propsに入っている物を全て出してプランカードを作成する

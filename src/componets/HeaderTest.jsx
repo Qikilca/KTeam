@@ -8,7 +8,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 //ボタンのラベルと遷移先の2次元配列
 const pages = [
     ["トップページ", "/"],
-    ["作物を探す", ""],
+    ["プランを探す", "/searchPlan"],
     ["新規登録", "/registerPage"]
 ];
 
