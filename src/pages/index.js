@@ -31,7 +31,7 @@ function HomePage(props) {
                     m: 1
                 }}>
                     <Typography variant='h3' textAlign={"center"} alignItems={"cemter"}>
-                        現役農家から直接学ぶ
+                        福島の農業を直接学ぶ
                     </Typography>
                 </Grid>
 
@@ -42,9 +42,37 @@ function HomePage(props) {
                     m: 1
                 }}>
                     <Typography textAlign={"center"}>
-                        これから農業を始める人や作物についてもっと知識を付けたい人におすすめ。
-                        運営認証済みの現役農家が作物ごとに直接現地で授業をしてくれるため安心安全で分かりやすい!
-                        自分が知りたい内容の授業を選択できるため無駄な時間を削減できます。
+                        <div>
+                            「福農」は福島の農業を多くに人に伝える事を目的としたサービスです。
+                        </div>
+
+                        <div>
+                            これから農業を始める人や、作物についてもっと知識を付けたい人達のために、直接農家の方々に教えてもらうことができます。
+                        </div>
+
+                        <div>
+                            現場からの声を直で聞き、より深く福島の農業を知ってもらえたらいいなと思っています。
+                        </div>
+
+                        <br></br>
+
+                        <div>
+                            福島第一原子力発電所事故の風評被害は10年以上たった今でも続いています。
+                        </div>
+
+                        <div>
+                            震災当初に比べれば、福島県産の野菜を買うことに抵抗がある人はかなり減りました。
+                            それでも、未だに抵抗を持っている人がいるのも確かです。
+                        </div>
+
+                        <div>
+                            私たちは、福島の作物が安全だということを買ってもらうのではなく、作ってもらうことで知ってもらえるのではないかと考えました。
+                        </div>
+
+                        <div>
+                            より多くの人が福島の農業を知り、福島の農作物が安全だということを知ってもらいたいです。
+                        </div>
+
                     </Typography>
                 </Grid>
 
@@ -52,9 +80,9 @@ function HomePage(props) {
 
                     <Typography variant='h4'
                         sx={{
-                            bgcolor:"text.disabled",
+                            bgcolor: "text.disabled",
                             p: 1,
-                            marginTop:4
+                            marginTop: 4
                         }}>
                         最新の授業プラン
                     </Typography>
