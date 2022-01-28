@@ -1,0 +1,143 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String  @map("user_id")
+  type               String
+  provider           String
+  providerAccountId  String  @map("provider_account_id")
+  refresh_token      String? @db.VarChar(255)
+  access_token       String? @db.VarChar(255)
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? @db.VarChar(2048)
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+  user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId], map: "Account_userId_fkey")
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "Session_userId_fkey")
+  @@map("sessions")
+}
+
+model User {
+  id            String       @id @default(cuid())
+  name          String?
+  email         String?      @unique
+  emailVerified DateTime?    @map("email_verified")
+  image         String?
+  created_at    DateTime     @default(now()) @db.DateTime(0)
+  updated_at    DateTime     @default(now()) @db.DateTime(0)
+  accounts      Account[]
+  class_plan    class_plan[] @relation("class_planTousers")
+  sessions      Session[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+model area {
+  area_id    Int          @id @default(autoincrement())
+  area_name  String?      @db.VarChar(31)
+  class_plan class_plan[]
+}
+
+model class_plan {
+  plan_id           Int       @id @default(autoincrement())
+  crops_id          Int
+  crops_name        String    @db.VarChar(15)
+  title             String?   @db.VarChar(32)
+  description       String?   @db.VarChar(500)
+  fee               Decimal?  @default(0) @db.Decimal(10, 0)
+  start_date        DateTime? @db.Date
+  end_date          DateTime? @db.Date
+  teach_user_id     String
+  teach_user_name   String
+  public_preference Int       @default(0) @db.TinyInt
+  photo_url         String?   @db.VarChar(511)
+  venue             String?
+  area_id           Int
+  area_name         String    @db.VarChar(15)
+  capacity          Int?
+  created_at        DateTime  @default(now()) @db.DateTime(0)
+  update_at         DateTime  @default(now()) @db.DateTime(0)
+  area              area      @relation(fields: [area_id], references: [area_id], map: "class_plan_area_id_fk")
+  crops             crops     @relation(fields: [crops_id], references: [crops_id], map: "class_plan_crops_id_fk")
+  users             User      @relation("class_planTousers", fields: [teach_user_id], references: [id], map: "class_plan_teach_user_id_fk")
+
+  @@index([area_id], map: "class_plan_area_id_fk")
+  @@index([crops_id], map: "class_plan_crops_id_fk")
+  @@index([teach_user_id], map: "class_plan_teacher_id_fk")
+}
+
+model crops {
+  crops_id   Int          @id @default(autoincrement())
+  crops      String       @db.VarChar(15)
+  class_plan class_plan[]
+}
+
+model contact {
+  contact_id          Int              @id @default(autoincrement())
+  contact_category_id Int
+  email               String           @db.VarChar(255)
+  contact_title       String           @db.VarChar(127)
+  contact_detail      String           @db.VarChar(500)
+  created_at          DateTime         @default(now()) @db.DateTime(0)
+  contact_category    contact_category @relation(fields: [contact_category_id], references: [category_id], map: "contact_contact_category_id")
+
+  @@index([contact_category_id], map: "contact_category_id")
+}
+
+model contact_category {
+  category_id   Int       @id @default(autoincrement())
+  category_name String    @db.VarChar(255)
+  contact       contact[]
+}
+
+model faq {
+  faq_id     Int    @id @default(autoincrement())
+  faq_titile String @db.VarChar(511)
+  faq_detail String @db.VarChar(511)
+}
+
+model bank_information {
+  bank_id             Int      @id @default(autoincrement())
+  financial_facility  String?  @db.VarChar(15)
+  branch_name         String?  @db.VarChar(15)
+  account_type        String?  @db.VarChar(15)
+  bank_account_number String?  @db.VarChar(7)
+  account_holder      String?  @db.VarChar(48)
+  teacher_id          Int?
+  created_at          DateTime @db.DateTime(0)
+  updated_at          DateTime @default(now()) @db.DateTime(0)
+
+  @@index([teacher_id], map: "bank_information_teacher_id_fk")
+}
