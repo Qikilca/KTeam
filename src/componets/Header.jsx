@@ -1,173 +1,229 @@
 import * as React from 'react';
-import ReactDOM from 'react-dom';
-import { Box, Toolbar, MenuItem, Menu, Typography, Button, AppBar, IconButton, FormGroup, FormControlLabel, Switch } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem } from "@mui/material";
+import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
+
+//ボタンのラベルと遷移先の2次元配列
+const pages = [
+    ["トップページ", "/"],
+    ["プラン一覧", "/searchPlan"],
+    ["新規登録", "/registerPage"]
+];
+
+const settings = ["マイページ", "ログアウト"]
 
 function Header() {
-    const [LoginAnchorEl, setLoginAnchorEl] = React.useState(null);
-    const [LogoutAnchorEl, setLogoutAnchorEl] = React.useState(null);
-    const auth = React.useState(true);
 
-    const isLoginMenuOpen = Boolean(LoginAnchorEl);
-    const isLogoutMenuOpen = Boolean(LogoutAnchorEl);
+    const { data: session } = useSession();
 
-    const MenuClose = () => {
-        setLoginAnchorEl(null);
-        setLogoutAnchorEl(null);
-        MenuClose();
+    /**
+     * React Hooksを使ったログイン状態の保存変数
+     * Trueならログイン状態、Falseならログアウト状態
+     */
+    const auth = false;
+
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
     };
 
-    const LoginMenuOpen = (event) => {
-        setLoginAnchorEl(event.currentTarget);
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
     };
 
-    const LogoutMenuOpen = (event) => {
-        setLogoutAnchorEl(event.currentTarget);
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
     };
-    const LogoutMenuId = 'Logout';
-    const LogoutMenu = (
-        <Menu
-            LogoutAnchorEl={LogoutAnchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={LogoutMenuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isLogoutMenuOpen}
-            onClose={MenuClose}
-        >
-            <MenuItem>
-                <a>作物を探す</a>
-                <SearchIcon />
-            </MenuItem>
-            <MenuItem>
-                <a>新規登録</a>
-            </MenuItem>
-            <MenuItem>
-                <a>ログイン</a>
-            </MenuItem>
-        </Menu>
-    );
-    const LoginMenuId = 'Login';
-    const LoginMenu = (
-        <Menu
-            LoginAnchorEl={LoginAnchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={LoginMenuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isLoginMenuOpen}
-            onClose={MenuClose}
-        >
-            <MenuItem>
-                <a >作物を探す</a>
-                <SearchIcon />
-            </MenuItem>
-            <MenuItem>
-                <a >マイページ</a>
-            </MenuItem>
-            <MenuItem>
-                <a>ログアウト</a>
-            </MenuItem>
-        </Menu>
-    );
-    /*動作確認用 */
-    const setAuth = React.useState(true);
-    const handleChange = (event) => {
-        setAuth(event.target.checked);
-    };
+
+
 
     return (
-        <Box sx={{ flexGrow: 1 }} spacing={2}>
-            <AppBar position='static'>
-                <Toolbar>
+        <AppBar position="static">
+            <Container maxWidth="100%">
+                <Toolbar disableGutters>
+
+                    {/**画面が大きい時のロゴ */}
+                    <Link href={"/"}>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="div"
+                            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+                        >
+                            福農
+                        </Typography>
+                    </Link>
+
+
+                    {/**画面が小さい時のメニューバー */}
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit"
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                display: { xs: 'block', md: 'none' },
+                            }}
+                        >
+                            {pages.map((page) => (
+                                <MenuItem key={page[0]} onClick={handleCloseNavMenu}>
+                                    <Link href={page[1]}>
+
+                                        <Typography textAlign="center">
+                                            {page[0]}
+                                        </Typography>
+                                    </Link>
+
+                                </MenuItem>
+
+                            ))}
+
+                            { /* ログイン中は非表示 */}
+                            {!session && (
+                                <>
+                                    <MenuItem key={"next-auth"} onClick={handleCloseNavMenu}>
+                                        <Link href={"/api/auth/signin/google/"}>
+                                            <Typography textAlign="center">
+                                                ログイン
+                                            </Typography>
+                                        </Link>
+
+                                    </MenuItem>
+                                </>
+                            )}
+                        </Menu>
+                    </Box>
+
+                    {/**画面が小さい時のロゴ */}
                     <Typography
                         variant="h6"
-                        sx={1}
+                        noWrap
+                        component="div"
+                        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
+                        福農
                     </Typography>
-                    <Button variant="Outlined" ml={4} >作物を探す
-                        <SearchIcon />
-                    </Button>
-                    {auth ? (
-                        <div>
-                            <Button variant='outlined' mx={1} >
-                                マイページ
-                            </Button>
-                            <Button variant="Outlined" mx={1}  >
-                                ログアウト
-                            </Button>
-                            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                                <IconButton
-                                    size="large"
-                                    aria-label="show more"
-                                    aria-controls='LoginMenu'
-                                    aria-haspopup="true"
-                                    onClick={LoginMenuOpen}
 
+                    {/**画面が大きい時のメニューボタン */}
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        {pages.map((page) => (
+                            //リンクで囲って画面遷移を実装にする
+                            <Link href={page[1]}>
+                                <Button
+                                    key={page[0]}
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
-                                    <MoreVertIcon />
-                                </IconButton>
-                            </Box>
-                        </div>
-                    ) : (
-                        <div>
-                            <Button variant="Outlined" mx={1} >
-                                新規登録
-                            </Button>
-                            <Button variant="Outlined" mx={1} >
-                                ログイン
-                            </Button>
-                            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                                <IconButton
-                                    size="large"
-                                    aria-label="show more"
-                                    aria-controls={LogoutMenu}
-                                    aria-haspopup="true"
-                                    onClick={LogoutMenuOpen}
+                                    {page[0]}
+                                </Button>
+                            </Link>
 
-                                >
-                                    <MoreVertIcon />
+                        ))}
+
+
+                        { /* ログイン中は非表示 */}
+                        {!session && (
+                            <>
+
+                                <Link href={"/api/auth/signin/google/"}>
+                                    <Button
+                                        key={"ログイン"}
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        ログイン
+                                    </Button>
+                                </Link>
+
+                            </>
+                        )}
+
+                    </Box>
+
+                    {/**アバター表示 */}
+                    {/**authがTrueならアバター類を表示しFalseなら非表示にする */}
+                    {session && (
+                        <Box sx={{ flexGrow: 0 }}>
+                            <Tooltip title="Open settings">
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                    <Avatar alt="Remy Sharp" src="" />
                                 </IconButton>
-                            </Box>
-                        </div>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+
+
+
+                            >
+
+                                <MenuItem key={"マイページ"} onClick={handleCloseNavMenu}>
+
+                                    <Link href={"/myPage"}>
+                                        <Typography textAlign="center">
+                                            マイページ
+                                        </Typography>
+                                    </Link>
+                                </MenuItem>
+
+                                <MenuItem onClick={() => signOut()}>
+
+                                    <Typography textAlign="center">
+                                        ログアウト
+                                    </Typography>
+
+                                </MenuItem>
+
+                            </Menu>
+                        </Box>
+
                     )}
+
+
                 </Toolbar>
-            </AppBar>
-            {LoginMenu}
-            {LogoutMenu}
-            {/*動作確認*/}
-            <Box>
-                動作確認用
-            </Box>
-            <FormGroup>
-                <FormControlLabel
-                    control={
-                        <Switch
-                            checked={auth}
-                            onChange={handleChange}
-                            aria-label="login switch"
-                        />
-                    }
-                    label={auth ? 'Logout' : 'Login'}
-                />
-            </FormGroup>
-            {/*動作確認*/}
-        </Box >
 
+            </Container>
+
+        </AppBar >
     );
-
-}
+};
 export default Header;

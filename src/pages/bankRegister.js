@@ -8,12 +8,17 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import Header from '../componets/Header';
 
 
 function TeacherSettlementPage() {
   return (
     <div>
+      <Header></Header>
+
       <Grid container maxWidth={"xs"} justifyContent={"center"} textAlign={"center"}>
+
+
 
         <Grid item xs={12} md={7} margin={2}>
           受取口座 登録/変更

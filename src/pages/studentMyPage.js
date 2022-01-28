@@ -2,7 +2,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import HeaderTest from "../componets/HeaderTest";
+import HeaderTest from "../componets/Header";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import Link from "next/link"
 import HomePage from '.';

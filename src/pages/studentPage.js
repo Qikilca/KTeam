@@ -7,7 +7,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import HeaderTest from "../componets/HeaderTest";
+import Header from '../componets/Header';
 
 
 
@@ -36,10 +36,7 @@ function StudentPage() {
   return (
     <div>
 
-
-      <HeaderTest>
-
-      </HeaderTest>
+      <Header></Header>
 
       <Grid container maxWidth={"xs"} justifyContent={"center"}>
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import HeaderTest from '../componets/HeaderTest';
+import Header from '../componets/Header';
 
 
 import { Button, TextField, Grid } from '@mui/material';
@@ -9,7 +9,7 @@ function LoginPage() {
   return (
     <div>
 
-      <HeaderTest></HeaderTest>
+      <Header></Header>
 
       <Grid container maxWidth={"xs"} justifyContent={"center"}>
 

@@ -7,7 +7,7 @@ import { textAlign } from "@mui/system";
 import moment from "moment";
 import "moment/locale/ja";
 
-function PlanCard(props) {
+function PlanCardManager(props) {
     const userName = props.userName;
 
     //momentを日本語に設定
@@ -42,7 +42,7 @@ function PlanCard(props) {
     return (
 
 
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={12} lg={10}>
 
             <Card variant="outlined">
 
@@ -93,20 +93,31 @@ function PlanCard(props) {
                                     <ListItem>
                                         対象作物:{cropsName}
                                     </ListItem>
+
                                     <Divider />
 
                                     <ListItem>
                                         定員:{capacity + "名"}
                                     </ListItem>
+
+                                    <Divider />
+
+                                    <ListItem>
+                                        料金:{fee + "円"}
+                                    </ListItem>
+
                                     <Divider />
 
                                     <ListItem >
                                         {/*説明欄のテキストはオーバーする場合は...で表現する*/}
-                                        <Box component="div"
+                                        <Box
+                                            component="div"
                                             sx={{
                                                 textOverflow: 'ellipsis',
                                                 overflow: 'hidden',
-                                            }}>
+                                            }}
+                                        >
+
                                             説明:{description}
 
                                         </Box>
@@ -139,22 +150,23 @@ function PlanCard(props) {
                     action={
                         <Box sx={{
                             padding: 1,
-                        }}>
-                            {/**
-                                 * 購入ボタン
-                                 */}
+                        }}
+                        >
                             <Button variant="contained" disableElevation>
                                 <div>
-                                    ￥{fee}
+                                    プラン編集
                                 </div>
                             </Button>
                         </Box>
                     }
                 >
                 </CardHeader>
+
             </Card>
+
         </Grid>
     )
 
 }
-export default PlanCard;
+
+export default PlanCardManager;

@@ -1,11 +1,11 @@
 
 import * as React from 'react';
 import { Button, Grid, TextField, Typography, Box } from '@mui/material';
-import HeaderTest from '../componets/HeaderTest';
 import PlanCard from '../componets/PlancardMain';
 import Image from 'next/image';
 import PlanFillter from '../componets/PlanFillter';
 import { width } from '@mui/system';
+import Header from '../componets/Header';
 
 
 function SearchPlan(props) {
@@ -14,10 +14,7 @@ function SearchPlan(props) {
 
     return (
         <div>
-
-
-            <HeaderTest></HeaderTest>
-
+            <Header></Header>
 
             <Box
                 sx={{

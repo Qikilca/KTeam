@@ -7,7 +7,7 @@ import { textAlign } from "@mui/system";
 import moment from "moment";
 import "moment/locale/ja";
 
-function PlanCard(props) {
+function PlanCardDetail(props) {
     const userName = props.userName;
 
     //momentを日本語に設定
@@ -42,7 +42,7 @@ function PlanCard(props) {
     return (
 
 
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={12} lg={10}>
 
             <Card variant="outlined">
 
@@ -93,11 +93,19 @@ function PlanCard(props) {
                                     <ListItem>
                                         対象作物:{cropsName}
                                     </ListItem>
+
                                     <Divider />
 
                                     <ListItem>
                                         定員:{capacity + "名"}
                                     </ListItem>
+
+                                    <Divider />
+
+                                    <ListItem>
+                                        料金:{fee + "円"}
+                                    </ListItem>
+
                                     <Divider />
 
                                     <ListItem >
@@ -145,7 +153,7 @@ function PlanCard(props) {
                                  */}
                             <Button variant="contained" disableElevation>
                                 <div>
-                                    ￥{fee}
+                                    プラン確認
                                 </div>
                             </Button>
                         </Box>
@@ -157,4 +165,4 @@ function PlanCard(props) {
     )
 
 }
-export default PlanCard;
+export default PlanCardDetail;

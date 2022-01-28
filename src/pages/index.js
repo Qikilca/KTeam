@@ -1,9 +1,9 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Grid, TextField, Typography, Box, Divider } from '@mui/material';
-import HeaderTest from '../componets/HeaderTest';
+import HeaderTest from '../componets/Header';
 import Footer from '../componets/Footer';
-import FooterTest from '../componets/HeaderTest';
+import FooterTest from '../componets/Header';
 import PlanCard from '../componets/Plancard';
 import Image from 'next/image';
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -23,25 +23,34 @@ function HomePage(props) {
 
             <Grid container textAlign={"center"} justifyContent={"center"} spacing={2} marginTop={2}>
 
+                <Grid item xs={12} md={9}>
 
-                <Grid item xs={12} md={9} sx={{
-                    bgcolor: "info.main",
-                    p: 2,
-                    borderRadius: 2,
-                    m: 1
-                }}>
-                    <Typography variant='h3' textAlign={"center"} alignItems={"cemter"}>
+                    <Typography
+                        variant='h3'
+                        textAlign={"center"}
+                        sx={{
+                            bgcolor: "info.main",
+                            p: 2,
+                            borderRadius: 2,
+                        }}
+                    >
                         福島の農業を直接学ぶ
                     </Typography>
+
                 </Grid>
 
-                <Grid item xs={12} md={9} sx={{
-                    background: "#aaffff",
-                    p: 2,
-                    borderRadius: 2,
-                    m: 1
-                }}>
-                    <Typography textAlign={"center"}>
+                <Grid item xs={12} md={9}
+
+                >
+
+                    <Typography
+                        textAlign={"center"}
+                        sx={{
+                            background: "#aaffff",
+                            p: 2,
+                            borderRadius: 2,
+                        }}
+                    >
                         <div>
                             「福農」は福島の農業を多くに人に伝える事を目的としたサービスです。
                         </div>
@@ -74,16 +83,19 @@ function HomePage(props) {
                         </div>
 
                     </Typography>
+
                 </Grid>
 
-                <Grid xs={12} md={9}>
+                <Grid item xs={12} md={9}>
 
-                    <Typography variant='h4'
+                    <Typography
+                        variant='h4'
                         sx={{
-                            bgcolor: "text.disabled",
+                            background: "#E2E2E2",
                             p: 1,
                             marginTop: 4
-                        }}>
+                        }}
+                    >
                         最新の授業プラン
                     </Typography>
                 </Grid>
@@ -93,7 +105,7 @@ function HomePage(props) {
                     posts.map(
                         (item) =>
                             <PlanCard
-                                userName={item.teacher_name}
+                                userName={item.teach_user_name}
                                 postedDate={item.created_at}
                                 title={item.title}
                                 startDate={item.start_date}
