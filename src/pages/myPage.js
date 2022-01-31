@@ -38,14 +38,16 @@ function MyPage({ user }) {
                             sx={{
                                 width: 160,
                                 height: 160
-                            }} >
-
-                            <Button variant="contained" fullWidth sx={{ height: "100%" }} >
-                                <ContentPasteIcon fontSize='large'></ContentPasteIcon>
-                                <Box>
-                                    プラン管理
-                                </Box>
-                            </Button>
+                            }}
+                        >
+                            <Link href={"/managementPlan"}>
+                                <Button variant="contained" fullWidth sx={{ height: "100%" }} >
+                                    <ContentPasteIcon fontSize='large'></ContentPasteIcon>
+                                    <Box>
+                                        プラン管理
+                                    </Box>
+                                </Button>
+                            </Link>
                         </Paper>
 
 

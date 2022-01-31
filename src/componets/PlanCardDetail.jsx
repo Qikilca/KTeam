@@ -148,13 +148,9 @@ function PlanCardDetail(props) {
                         <Box sx={{
                             padding: 1,
                         }}>
-                            {/**
-                                 * 購入ボタン
-                                 */}
+                            {/* 確認ボタン*/}
                             <Button variant="contained" disableElevation>
-                                <div>
-                                    プラン確認
-                                </div>
+                                プラン確認
                             </Button>
                         </Box>
                     }

@@ -101,10 +101,11 @@ function HomePage(props) {
                 </Grid>
 
                 {
+                    
                     //propsに入っている物を全て出してプランカードを作成する
                     posts.map(
                         (item) =>
-                            <PlanCard
+                            <PlanCard key={item.id}
                                 userName={item.teach_user_name}
                                 postedDate={item.created_at}
                                 title={item.title}
@@ -133,7 +134,8 @@ function HomePage(props) {
 //PlanCardに使うPropsを取得してくる関数
 export async function getStaticProps(context) {
     //エンドポイント指定
-    const res = await fetch("http://localhost:3000/api/getNewPlan5");
+    //const res = await fetch("http://localhost:3000/api/getNewPlan5");
+    const res = await fetch("http://localhost:3000/api/getNew5Plans");
     const posts = await res.json();
 
     return {

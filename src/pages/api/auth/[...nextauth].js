@@ -26,4 +26,6 @@ export default NextAuth({
     },
      */
 
+    secret:"select",
+
 });

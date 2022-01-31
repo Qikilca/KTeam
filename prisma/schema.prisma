@@ -65,43 +65,35 @@ model VerificationToken {
 }
 
 model area {
-  area_id    Int          @id @default(autoincrement())
-  area_name  String?      @db.VarChar(31)
-  class_plan class_plan[]
+  area_id   Int     @id @default(autoincrement())
+  area_name String? @db.VarChar(31)
 }
 
 model class_plan {
   plan_id           Int       @id @default(autoincrement())
-  crops_id          Int
   crops_name        String    @db.VarChar(15)
   title             String?   @db.VarChar(32)
   description       String?   @db.VarChar(500)
   fee               Decimal?  @default(0) @db.Decimal(10, 0)
   start_date        DateTime? @db.Date
   end_date          DateTime? @db.Date
-  teach_user_id     String
   teach_user_name   String
   public_preference Int       @default(0) @db.TinyInt
   photo_url         String?   @db.VarChar(511)
   venue             String?
-  area_id           Int
   area_name         String    @db.VarChar(15)
   capacity          Int?
   created_at        DateTime  @default(now()) @db.DateTime(0)
   update_at         DateTime  @default(now()) @db.DateTime(0)
-  area              area      @relation(fields: [area_id], references: [area_id], map: "class_plan_area_id_fk")
-  crops             crops     @relation(fields: [crops_id], references: [crops_id], map: "class_plan_crops_id_fk")
-  users             User      @relation("class_planTousers", fields: [teach_user_id], references: [id], map: "class_plan_teach_user_id_fk")
+  author            String?
+  users             User?     @relation("class_planTousers", fields: [author], references: [email], onDelete: Restrict, map: "class_plan_author_fk")
 
-  @@index([area_id], map: "class_plan_area_id_fk")
-  @@index([crops_id], map: "class_plan_crops_id_fk")
-  @@index([teach_user_id], map: "class_plan_teacher_id_fk")
+  @@index([author], map: "class_plan_author_fk")
 }
 
 model crops {
-  crops_id   Int          @id @default(autoincrement())
-  crops      String       @db.VarChar(15)
-  class_plan class_plan[]
+  crops_id Int    @id @default(autoincrement())
+  crops    String @db.VarChar(15)
 }
 
 model contact {

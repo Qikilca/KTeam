@@ -2,8 +2,6 @@ import { AutoFixHigh, CardTravel, MoreVert } from "@mui/icons-material";
 import * as React from 'react';
 import { Avatar, List, Card, CardContent, CardHeader, Box, Divider, Grid, ListItem, Typography, Button, CardActions, Icon, autocompleteClasses, IconButton } from "@mui/material";
 import Image from "next/image";
-import { use } from "express/lib/router";
-import { textAlign } from "@mui/system";
 import moment from "moment";
 import "moment/locale/ja";
 
@@ -40,120 +38,121 @@ function PlanCard(props) {
     const fee = props.fee;
 
     return (
+        <>
+
+            <Grid item xs={12} md={8}>
+
+                <Card variant="outlined">
+
+                    <Typography component="div" textAlign={"center"}>
+                        <Box sx={{ fontSize: 28, fontWeight: 550, m: 1 }}>{planTitle}</Box>
+                    </Typography>
+
+                    <Divider />
+
+                    <CardContent>
+                        {/*カードコンテンツをGridのコンテナとして指定*/}
+                        <Grid container textAlign={"center"} justifyContent={"center"} alignItems={"center"}>
+
+                            {/*画像ファイルの配置、画面が小さい場合は縦に並び替え*/}
+                            <Grid item xs={12} md={6}>
+                                <ListItem>
+                                    <Image src={"/img/sample2.jpg"} width={240} height={160} objectFit="contain" ></Image>
+                                </ListItem>
+                            </Grid>
+
+                            {/*説明部分の配置*/}
+                            <Grid item xs={12} md={6}>
+                                <ListItem>
+
+                                    {/*説明項目のリスト化*/}
+                                    <List style={{ width: "100%", whiteSpace: 'nowrap' }}>
 
 
-        <Grid item xs={12} md={8}>
+                                        <ListItem>
+                                            開始日:{moment(startDate).format("YYYY年M月D日")}
+                                        </ListItem>
 
-            <Card variant="outlined">
+                                        <Divider />
 
-                <Typography component="div" textAlign={"center"}>
-                    <Box sx={{ fontSize: 28, fontWeight: 550, m: 1 }}>{planTitle}</Box>
-                </Typography>
+                                        <ListItem>
+                                            開催期間:{holdingPeriod + "日間"}
+                                        </ListItem>
 
-                <Divider />
 
-                <CardContent>
-                    {/*カードコンテンツをGridのコンテナとして指定*/}
-                    <Grid container textAlign={"center"} justifyContent={"center"} alignItems={"center"}>
+                                        <Divider />
 
-                        {/*画像ファイルの配置、画面が小さい場合は縦に並び替え*/}
-                        <Grid item xs={12} md={6}>
-                            <ListItem>
-                                <Image src={"/img/sample2.jpg"} width={240} height={160} objectFit="contain" ></Image>
-                            </ListItem>
+                                        <ListItem>
+                                            開催地域:{areaName}
+                                        </ListItem>
+
+                                        <Divider />
+
+                                        <ListItem>
+                                            対象作物:{cropsName}
+                                        </ListItem>
+                                        <Divider />
+
+                                        <ListItem>
+                                            定員:{capacity + "名"}
+                                        </ListItem>
+                                        <Divider />
+
+                                        <ListItem >
+                                            {/*説明欄のテキストはオーバーする場合は...で表現する*/}
+                                            <Box component="div"
+                                                sx={{
+                                                    textOverflow: 'ellipsis',
+                                                    overflow: 'hidden',
+                                                }}>
+                                                説明:{description}
+
+                                            </Box>
+
+                                        </ListItem>
+                                    </List>
+
+                                </ListItem>
+                            </Grid>
+
                         </Grid>
+                    </CardContent>
 
-                        {/*説明部分の配置*/}
-                        <Grid item xs={12} md={6}>
-                            <ListItem>
+                    <Divider />
 
-                                {/*説明項目のリスト化*/}
-                                <List style={{ width: "100%", whiteSpace: 'nowrap' }}>
+                    <CardHeader
+                        avatar={
+                            <IconButton sx={{ p: 0 }}>
+                                <Avatar
+                                    alt={userName}
+                                    src="/broken-image.jpg"
+                                >
+                                </Avatar>
+                            </IconButton>
+
+                        }
+                        title={userName}
+                        subheader={"投稿日 " + postedDate}
+                        inlist
+                        action={
+                            <Box sx={{
+                                padding: 1,
+                            }}>
+                                {/*購入ボタン*/}
+                                <Button variant="contained" disableElevation>
+                                    <div>
+                                        ￥{fee}
+                                    </div>
+                                </Button>
+                            </Box>
+                        }
+                    >
+                    </CardHeader>
+                </Card>
+            </Grid>
+        </>
 
 
-                                    <ListItem>
-                                        開始日:{moment(startDate).format("YYYY年M月D日")}
-                                    </ListItem>
-
-                                    <Divider />
-
-                                    <ListItem>
-                                        開催期間:{holdingPeriod + "日間"}
-                                    </ListItem>
-
-
-                                    <Divider />
-
-                                    <ListItem>
-                                        開催地域:{areaName}
-                                    </ListItem>
-
-                                    <Divider />
-
-                                    <ListItem>
-                                        対象作物:{cropsName}
-                                    </ListItem>
-                                    <Divider />
-
-                                    <ListItem>
-                                        定員:{capacity + "名"}
-                                    </ListItem>
-                                    <Divider />
-
-                                    <ListItem >
-                                        {/*説明欄のテキストはオーバーする場合は...で表現する*/}
-                                        <Box component="div"
-                                            sx={{
-                                                textOverflow: 'ellipsis',
-                                                overflow: 'hidden',
-                                            }}>
-                                            説明:{description}
-
-                                        </Box>
-
-                                    </ListItem>
-                                </List>
-
-                            </ListItem>
-                        </Grid>
-
-                    </Grid>
-                </CardContent>
-
-                <Divider />
-
-                <CardHeader
-                    avatar={
-                        <IconButton sx={{ p: 0 }}>
-                            <Avatar
-                                alt={userName}
-                                src="/broken-image.jpg"
-                            >
-                            </Avatar>
-                        </IconButton>
-
-                    }
-                    title={userName}
-                    subheader={"投稿日 " + postedDate}
-                    inlist
-                    action={
-                        <Box sx={{
-                            padding: 1,
-                        }}>
-                            {/**
-                                 * 購入ボタン
-                                 */}
-                            <Button variant="contained" disableElevation>
-                                <div>
-                                    ￥{fee}
-                                </div>
-                            </Button>
-                        </Box>
-                    }
-                >
-                </CardHeader>
-            </Card>
-        </Grid>
     )
 
 }

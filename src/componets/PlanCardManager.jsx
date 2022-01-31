@@ -40,8 +40,6 @@ function PlanCardManager(props) {
     const fee = props.fee;
 
     return (
-
-
         <Grid item xs={12} md={12} lg={10}>
 
             <Card variant="outlined">

@@ -7,7 +7,6 @@ const handler = async (_, res) => {
         SELECT * 
         FROM class_plan
         ORDER BY created_at DESC
-        LIMIT 5
         `);
 
         return res.json(results);

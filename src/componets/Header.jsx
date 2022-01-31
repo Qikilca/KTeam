@@ -135,7 +135,7 @@ function Header() {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             //リンクで囲って画面遷移を実装にする
-                            <Link href={page[1]}>
+                            <Link key={page[0]} href={page[1]}>
                                 <Button
                                     key={page[0]}
                                     onClick={handleCloseNavMenu}
