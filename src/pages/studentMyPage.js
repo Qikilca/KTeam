@@ -2,7 +2,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import HeaderTest from "../componets/Header";
+import Header from "../components/Header";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import Link from "next/link"
 import HomePage from '.';
@@ -15,9 +15,9 @@ function StudentMyPage({user}) {
   return (
     <div>
 
-      <HeaderTest>
+      <Header>
 
-      </HeaderTest>
+      </Header>
 
       <Grid container maxWidth={"xs"} justifyContent={"center"} textAlign={"center"}>
 
