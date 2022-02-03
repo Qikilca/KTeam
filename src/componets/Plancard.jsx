@@ -39,7 +39,6 @@ function PlanCard(props) {
 
     return (
         <>
-
             <Grid item xs={12} md={8}>
 
                 <Card variant="outlined">

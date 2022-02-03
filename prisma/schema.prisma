@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = "mysql://kteam:LpL%25FcCzzEZS6@kteam.ga:3306/kteam"
 }
 
 model Account {
@@ -115,9 +115,9 @@ model contact_category {
 }
 
 model faq {
-  faq_id     Int    @id @default(autoincrement())
-  faq_titile String @db.VarChar(511)
-  faq_detail String @db.VarChar(511)
+  faq_id       Int    @id @default(autoincrement())
+  faq_question String @db.VarChar(511)
+  faq_answer   String @db.VarChar(511)
 }
 
 model bank_information {

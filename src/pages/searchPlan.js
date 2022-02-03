@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { Button, Grid, TextField, Typography, Box } from '@mui/material';
-import PlanCard from '../componets/PlancardMain';
+import PlanCard from '../componets/Plancard';
 import Image from 'next/image';
 import PlanFillter from '../componets/PlanFillter';
 import { width } from '@mui/system';
@@ -17,7 +17,7 @@ function SearchPlan(props) {
             <Header></Header>
 
 
-            <Grid container textAlign={"center"} justifyContent={"center"} >
+            <Grid container textAlign={"center"} justifyContent={"center"} spacing={2} marginTop={2}>
 
                 {
                     //propsに入っている物を全て出してプランカードを作成する
