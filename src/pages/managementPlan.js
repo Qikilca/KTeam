@@ -1,11 +1,11 @@
 import { Box, Button, Grid, List, ListItem, ListSubheader, Typography } from '@mui/material';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import Header from '../componets/Header';
-import PlanCardDetail from '../componets/PlanCardDetail';
-import PlanCardManager from '../componets/PlanCardManager';
+import Header from '../components/Header';
+import PlanCardDetail from '../components/PlanCardDetail';
+import PlanCardManager from '../components/PlanCardManager';
 import AddIcon from '@mui/icons-material/Add';
-import PlanCard from '../componets/Plancard';
+import PlanCard from '../components/Plancard';
 import Link from "next/link";
 import { useSession, signIn, signOut,  } from "next-auth/react";
 

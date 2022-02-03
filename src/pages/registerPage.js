@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import Header from '../componets/Header';
+import Header from '../components/Header';
 import { useSession, signIn, signOut } from "next-auth/react";
 import Router from 'next/router';
 

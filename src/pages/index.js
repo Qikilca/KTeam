@@ -1,10 +1,9 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Grid, TextField, Typography, Box, Divider } from '@mui/material';
-import HeaderTest from '../componets/Header';
-import Footer from '../componets/Footer';
-import FooterTest from '../componets/Header';
-import PlanCard from '../componets/Plancard';
+import Header from "../components/Header";
+import Footer from '../components/Footer';
+import PlanCard from '../components/Plancard';
 import Image from 'next/image';
 import { useSession, signIn, signOut } from "next-auth/react";
 import { palette } from '@mui/system';
@@ -19,7 +18,7 @@ function HomePage(props) {
     return (
 
         <div>
-            <HeaderTest></HeaderTest>
+            <Header></Header>
 
             <Grid container textAlign={"center"} justifyContent={"center"} spacing={2} marginTop={2}>
 
@@ -101,7 +100,7 @@ function HomePage(props) {
                 </Grid>
 
                 {
-                    
+
                     //propsに入っている物を全て出してプランカードを作成する
                     posts.map(
                         (item) =>

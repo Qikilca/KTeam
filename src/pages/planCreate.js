@@ -25,7 +25,7 @@ import ja from "date-fns/locale/ja";
 import Image from 'next/image';
 import reactDom from 'react-dom';
 import Router from "next/router"
-import Header from '../componets/Header';
+import Header from '../components/Header';
 
 
 function planCreate() {

@@ -1,7 +1,7 @@
 import { Select, Grid, InputLabel, MenuItem, TextField, FormControl, Divider, Button } from "@mui/material";
 import { render } from "react-dom";
 import * as React from 'react';
-import Footer from "../componets/footer";
+import Footer from "../components/footer";
 import { Box } from "@mui/system";
 import { withThemeCreator } from "@material-ui/styles";
 

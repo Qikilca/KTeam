@@ -1,11 +1,11 @@
 
 import * as React from 'react';
 import { Button, Grid, TextField, Typography, Box } from '@mui/material';
-import PlanCard from '../componets/Plancard';
+import PlanCard from '../components/Plancard';
 import Image from 'next/image';
-import PlanFillter from '../componets/PlanFillter';
+import PlanFillter from '../components/PlanFillter';
 import { width } from '@mui/system';
-import Header from '../componets/Header';
+import Header from '../components/Header';
 
 
 function SearchPlan(props) {

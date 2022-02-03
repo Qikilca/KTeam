@@ -7,7 +7,7 @@ import HomePage from '.';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-import Header from '../componets/Header';
+import Header from '../components/Header';
 
 function MyPage({ user }) {
     const username = user.name;
