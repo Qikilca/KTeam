@@ -13,3 +13,5 @@ node_modules/
 
 # 環境変数のローカル
 .env.local
+
+.env
