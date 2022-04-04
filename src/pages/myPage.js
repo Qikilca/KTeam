@@ -37,7 +37,8 @@ function MyPage({ user }) {
                         <Paper elevation={0} square variant={"outlined"}
                             sx={{
                                 width: 160,
-                                height: 160
+                                height: 160,
+                                border:0
                             }}
                         >
                             <Link href={"/managementPlan"}>
@@ -57,7 +58,8 @@ function MyPage({ user }) {
                         <Paper elevation={0} square variant={"outlined"}
                             sx={{
                                 width: 160,
-                                height: 160
+                                height: 160,
+                                border:0
                             }} >
 
                             <Link href='/studentPage'>
@@ -75,7 +77,9 @@ function MyPage({ user }) {
                         <Paper elevation={0} square variant={"outlined"}
                             sx={{
                                 width: 160,
-                                height: 160
+                                height: 160,
+                                border:0
+
                             }} >
 
                             <Link href='/bankRegister'>

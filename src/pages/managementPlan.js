@@ -7,7 +7,7 @@ import PlanCardManager from '../components/PlanCardManager';
 import AddIcon from '@mui/icons-material/Add';
 import PlanCard from '../components/Plancard';
 import Link from "next/link";
-import { useSession, signIn, signOut,  } from "next-auth/react";
+import { useSession, signIn, signOut, getSession, } from "next-auth/react";
 
 
 
@@ -125,24 +125,28 @@ function ManagementPlan(props) {
 
 
                                 {
-                                    //propsに入っている物を全て出してプランカードを作成する
-                                    posts.map(
-                                        (item) =>
-                                            <PlanCardManager
-                                                key={item.id}
-                                                userName={item.teach_user_name}
-                                                postedDate={item.created_at}
-                                                title={item.title}
-                                                startDate={item.start_date}
-                                                endDate={item.end_date}
-                                                areaName={item.area_name}
-                                                cropsName={item.crops_name}
-                                                capacity={item.capacity}
-                                                description={item.description}
-                                                fee={item.fee}
+                                    (!posts &&
 
-                                            ></PlanCardManager>
+                                        posts.map(
+                                            (item) =>
+                                                <PlanCardManager
+                                                    key={item.id}
+                                                    userName={item.teach_user_name}
+                                                    postedDate={item.created_at}
+                                                    title={item.title}
+                                                    startDate={item.start_date}
+                                                    endDate={item.end_date}
+                                                    areaName={item.area_name}
+                                                    cropsName={item.crops_name}
+                                                    capacity={item.capacity}
+                                                    description={item.description}
+                                                    fee={item.fee}
+
+                                                ></PlanCardManager>
+                                        )
+
                                     )
+                                    //propsに入っている物を全て出してプランカードを作成するs
 
                                 }
 
@@ -181,7 +185,10 @@ function ManagementPlan(props) {
 
 export async function getStaticProps(context) {
 
+    const session = await getSession(context);
+
     const res = await fetch("http://localhost:3000/api/getMyPlans");
+
     const posts = await res.json();
 
 

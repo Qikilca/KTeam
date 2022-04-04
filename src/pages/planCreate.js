@@ -297,6 +297,9 @@ function planCreate() {
 
                     </Grid>
 
+                    {/**
+                     * 
+                  
 
                     <Grid item xs={12} md={7} margin={2}>
                         <label htmlFor="upload-image-file">
@@ -308,6 +311,8 @@ function planCreate() {
                             </Button>
                         </label>
                     </Grid>
+
+                       */}
 
 
 

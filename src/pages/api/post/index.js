@@ -2,6 +2,8 @@ import { getSession } from "next-auth/react";
 import prisma from "../../../../lib/prisma";
 
 export default async function handler(req, res) {
+
+    //reqからとんできたデータを受け取る
     const {
         title,
         crops,
@@ -14,12 +16,14 @@ export default async function handler(req, res) {
         isPublic
     } = req.body;
 
+    //型変換
     const isPublic_num = Number(Boolean(isPublic))
     const capacity_num = Number(capacity);
 
-    
+    //セッション確認
     const session = await getSession({ req });
 
+    //データベースへの登録
     const result = await prisma.class_plan.create({
         data: {
             crops_name: crops,
