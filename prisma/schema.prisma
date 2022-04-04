@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://kteam:LpL%25FcCzzEZS6@kteam.ga:3306/kteam"
+  url      = env("DATABASE_URL")
 }
 
 model Account {
